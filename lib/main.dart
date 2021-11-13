@@ -5,7 +5,7 @@ void main() {
 }
 
 class CatGame extends StatelessWidget {
-  const CatGame({Key? key}) : super(key: key);
+  const CatGame({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
