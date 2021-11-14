@@ -3,10 +3,14 @@ import 'package:flame/components/animation_component.dart';
 import 'package:flame/spritesheet.dart';
 import 'package:flutter/rendering.dart';
 
+const gravity = 1000;
+
 class Cat extends AnimationComponent {
   SpriteSheet _catSpriteSheet;
   Animation _runAnimation;
   Animation _hitAnimation;
+  double _speedY = 0;
+  double _maxY = 0;
 
   Cat() : super.empty() {
     _catSpriteSheet = SpriteSheet(
@@ -20,11 +24,34 @@ class Cat extends AnimationComponent {
     run();
   }
 
+  bool _isCatOnGround() {
+    return y >= _maxY;
+  }
+
+  /// This method is called periodically by the game engine
+  /// to request that your component updates itself.
+  @override
+  void update(double t) {
+    _speedY = _speedY + gravity * t;
+
+    y = y + _speedY * t;
+
+    if (_isCatOnGround()) {
+      y = _maxY;
+      _speedY = 0;
+    }
+
+    super.update(t);
+  }
+
+  /// This is a hook called by [BaseGame] to let this component
+  /// know that the screen (or flame draw area) has been update.
   @override
   void resize(Size size) {
     height = width = size.width / 10;
     x = width;
     y = size.height - 30 - height;
+    _maxY = y;
     super.resize(size);
   }
 
@@ -38,5 +65,11 @@ class Cat extends AnimationComponent {
     _hitAnimation =
         _catSpriteSheet.createAnimation(9, from: 0, to: 7, stepTime: 0.1);
     animation = _hitAnimation;
+  }
+
+  void jump() {
+    if (_isCatOnGround()) {
+      _speedY = -500;
+    }
   }
 }
