@@ -18,6 +18,8 @@ class Enemy extends AnimationComponent {
       rows: 1,
     );
 
+    _runAnimation =
+        _catSpriteSheet.createAnimation(0, from: 0, to: 5, stepTime: 0.1);
     _speed = 200;
     run();
   }
@@ -46,8 +48,6 @@ class Enemy extends AnimationComponent {
   }
 
   void run() {
-    _runAnimation =
-        _catSpriteSheet.createAnimation(0, from: 0, to: 5, stepTime: 0.1);
     animation = _runAnimation;
   }
 }

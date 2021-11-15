@@ -1,5 +1,6 @@
 import 'package:cat_game/components/cat.dart';
 import 'package:cat_game/components/enemy.dart';
+import 'package:cat_game/constants/game_assets.dart';
 import 'package:flame/components/parallax_component.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
@@ -14,13 +15,13 @@ class CatGame extends BaseGame with TapDetector {
   CatGame() {
     _parallaxComponent = ParallaxComponent(
       [
-        ParallaxImage('parallax/7.png'),
-        ParallaxImage('parallax/6.png'),
-        ParallaxImage('parallax/5.png'),
-        ParallaxImage('parallax/4.png'),
-        ParallaxImage('parallax/3.png'),
-        ParallaxImage('parallax/2.png'),
-        ParallaxImage('parallax/1.png'),
+        ParallaxImage(GameAssets.parallaxBackground[0]),
+        ParallaxImage(GameAssets.parallaxBackground[1]),
+        ParallaxImage(GameAssets.parallaxBackground[2]),
+        ParallaxImage(GameAssets.parallaxBackground[3]),
+        ParallaxImage(GameAssets.parallaxBackground[4]),
+        ParallaxImage(GameAssets.parallaxBackground[5]),
+        ParallaxImage(GameAssets.parallaxBackground[6]),
       ],
       baseSpeed: const Offset(100, 0),
       layerDelta: const Offset(20, 0),
