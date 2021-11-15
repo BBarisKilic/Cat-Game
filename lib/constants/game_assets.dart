@@ -8,4 +8,6 @@ class GameAssets {
     'parallax/2.png',
     'parallax/1.png',
   ];
+  static const String catImage = 'cat_sprite_sheet.png';
+  static const String hyenaImage = 'hyena_sprite_sheet.png';
 }

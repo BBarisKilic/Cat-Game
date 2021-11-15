@@ -1,9 +1,9 @@
+import 'package:cat_game/constants/game_assets.dart';
+import 'package:cat_game/constants/game_physic.dart';
 import 'package:flame/animation.dart';
 import 'package:flame/components/animation_component.dart';
 import 'package:flame/spritesheet.dart';
 import 'package:flutter/rendering.dart';
-
-const gravity = 1000;
 
 class Cat extends AnimationComponent {
   SpriteSheet _catSpriteSheet;
@@ -14,7 +14,7 @@ class Cat extends AnimationComponent {
 
   Cat() : super.empty() {
     _catSpriteSheet = SpriteSheet(
-      imageName: 'cat_sprite_sheet.png',
+      imageName: GameAssets.catImage,
       textureWidth: 32,
       textureHeight: 32,
       columns: 8,
@@ -37,7 +37,7 @@ class Cat extends AnimationComponent {
   /// to request that your component updates itself.
   @override
   void update(double t) {
-    _speedY = _speedY + gravity * t;
+    _speedY = _speedY + GamePhysic.gravity * t;
 
     y = y + _speedY * t;
 

@@ -1,3 +1,4 @@
+import 'package:cat_game/constants/game_assets.dart';
 import 'package:flame/animation.dart';
 import 'package:flame/components/animation_component.dart';
 import 'package:flame/spritesheet.dart';
@@ -11,7 +12,7 @@ class Enemy extends AnimationComponent {
 
   Enemy() : super.empty() {
     _catSpriteSheet = SpriteSheet(
-      imageName: 'hyena_sprite_sheet.png',
+      imageName: GameAssets.hyenaImage,
       textureWidth: 48,
       textureHeight: 48,
       columns: 6,
