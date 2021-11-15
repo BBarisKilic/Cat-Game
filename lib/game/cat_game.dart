@@ -14,24 +14,22 @@ class CatGame extends BaseGame with TapDetector {
 
   CatGame() {
     _parallaxComponent = ParallaxComponent(
-      [
-        ParallaxImage(GameAssets.parallaxBackground[0]),
-        ParallaxImage(GameAssets.parallaxBackground[1]),
-        ParallaxImage(GameAssets.parallaxBackground[2]),
-        ParallaxImage(GameAssets.parallaxBackground[3]),
-        ParallaxImage(GameAssets.parallaxBackground[4]),
-        ParallaxImage(GameAssets.parallaxBackground[5]),
-        ParallaxImage(GameAssets.parallaxBackground[6]),
-      ],
+      getParallaxImages(),
       baseSpeed: const Offset(100, 0),
       layerDelta: const Offset(20, 0),
     );
 
     /// Adding a new component to the components list.
     add(_parallaxComponent);
+
     _cat = Cat();
+
+    /// Adding a new component to the components list.
     add(_cat);
+
     _enemy = Enemy();
+
+    /// Adding a new component to the components list.
     add(_enemy);
   }
 
@@ -49,5 +47,14 @@ class CatGame extends BaseGame with TapDetector {
       _cat.run();
     }
     super.update(t);
+  }
+
+  /// Getting background images.
+  List<ParallaxImage> getParallaxImages() {
+    final List<ParallaxImage> images = <ParallaxImage>[];
+    for (String image in GameAssets.parallaxBackground) {
+      images.add(ParallaxImage(image));
+    }
+    return images;
   }
 }
