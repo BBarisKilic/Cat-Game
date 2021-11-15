@@ -1,4 +1,4 @@
-class GameAssets {
+class GameAsset {
   static const List<String> parallaxBackground = [
     'parallax/7.png',
     'parallax/6.png',

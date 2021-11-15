@@ -1,4 +1,4 @@
-import 'package:cat_game/constants/game_assets.dart';
+import 'package:cat_game/constants/game_asset.dart';
 import 'package:cat_game/constants/game_physic.dart';
 import 'package:flame/animation.dart';
 import 'package:flame/components/animation_component.dart';
@@ -14,7 +14,7 @@ class Cat extends AnimationComponent {
 
   Cat() : super.empty() {
     _catSpriteSheet = SpriteSheet(
-      imageName: GameAssets.catImage,
+      imageName: GameAsset.catImage,
       textureWidth: 32,
       textureHeight: 32,
       columns: 8,

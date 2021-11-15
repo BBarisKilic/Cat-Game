@@ -1,6 +1,6 @@
 import 'package:cat_game/components/cat.dart';
 import 'package:cat_game/components/enemy.dart';
-import 'package:cat_game/constants/game_assets.dart';
+import 'package:cat_game/constants/game_asset.dart';
 import 'package:flame/components/parallax_component.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
@@ -52,7 +52,7 @@ class CatGame extends BaseGame with TapDetector {
   /// Getting background images.
   List<ParallaxImage> getParallaxImages() {
     final List<ParallaxImage> images = <ParallaxImage>[];
-    for (String image in GameAssets.parallaxBackground) {
+    for (String image in GameAsset.parallaxBackground) {
       images.add(ParallaxImage(image));
     }
     return images;
