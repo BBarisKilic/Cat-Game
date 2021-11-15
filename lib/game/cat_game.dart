@@ -39,4 +39,14 @@ class CatGame extends BaseGame with TapDetector {
     _cat.jump();
     super.onTapDown(details);
   }
+
+  @override
+  void update(double t) {
+    if (_cat.distance(_enemy) <= _cat.width) {
+      _cat.hit();
+    } else {
+      _cat.run();
+    }
+    super.update(t);
+  }
 }

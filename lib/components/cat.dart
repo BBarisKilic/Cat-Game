@@ -21,6 +21,11 @@ class Cat extends AnimationComponent {
       rows: 10,
     );
 
+    _runAnimation =
+        _catSpriteSheet.createAnimation(4, from: 0, to: 7, stepTime: 0.1);
+    _hitAnimation =
+        _catSpriteSheet.createAnimation(9, from: 0, to: 7, stepTime: 0.1);
+
     run();
   }
 
@@ -56,14 +61,14 @@ class Cat extends AnimationComponent {
   }
 
   void run() {
-    _runAnimation =
-        _catSpriteSheet.createAnimation(4, from: 0, to: 7, stepTime: 0.1);
+    if (animation == _runAnimation) return;
+
     animation = _runAnimation;
   }
 
   void hit() {
-    _hitAnimation =
-        _catSpriteSheet.createAnimation(9, from: 0, to: 7, stepTime: 0.1);
+    if (animation == _hitAnimation) return;
+
     animation = _hitAnimation;
   }
 
