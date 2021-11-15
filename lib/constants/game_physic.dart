@@ -1,3 +1,3 @@
 class GamePhysic {
-  static const gravity = 1000;
+  static const int gravity = 1000;
 }
