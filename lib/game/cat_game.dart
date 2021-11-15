@@ -1,4 +1,5 @@
 import 'package:cat_game/components/cat.dart';
+import 'package:cat_game/components/enemy.dart';
 import 'package:flame/components/parallax_component.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 /// CatGame class extends from BaseGame class.
 class CatGame extends BaseGame with TapDetector {
   Cat _cat;
+  Enemy _enemy;
   ParallaxComponent _parallaxComponent;
 
   CatGame() {
@@ -27,8 +29,9 @@ class CatGame extends BaseGame with TapDetector {
     /// Adding a new component to the components list.
     add(_parallaxComponent);
     _cat = Cat();
-    _cat.run();
     add(_cat);
+    _enemy = Enemy();
+    add(_enemy);
   }
 
   @override
