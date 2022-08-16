@@ -25,7 +25,7 @@ class Cat extends SpriteAnimationComponent {
   double _speedY = 0;
   double _maxY = 0;
 
-  bool _isCatOnGround() => y >= _maxY;
+  bool get _isCatOnTheGround => y >= _maxY;
 
   // This method is called periodically by the game engine
   // to request that your component updates itself.
@@ -35,7 +35,7 @@ class Cat extends SpriteAnimationComponent {
 
     y = y + _speedY * dt;
 
-    if (_isCatOnGround()) {
+    if (_isCatOnTheGround) {
       y = _maxY;
       _speedY = 0;
     }
@@ -67,8 +67,8 @@ class Cat extends SpriteAnimationComponent {
   }
 
   void jump() {
-    if (_isCatOnGround()) {
-      _speedY = -500;
-    }
+    if (!_isCatOnTheGround) return;
+
+    _speedY = -500;
   }
 }
