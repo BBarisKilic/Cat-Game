@@ -1,63 +1,57 @@
 import 'package:cat_game/constants/game_asset.dart';
 import 'package:cat_game/constants/game_physic.dart';
-import 'package:flame/animation.dart';
-import 'package:flame/components/animation_component.dart';
-import 'package:flame/spritesheet.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flame/components.dart';
+import 'package:flame/flame.dart';
+import 'package:flame/sprite.dart';
 
-class Cat extends AnimationComponent {
-  SpriteSheet _catSpriteSheet;
-  Animation _runAnimation;
-  Animation _hitAnimation;
-  double _speedY = 0;
-  double _maxY = 0;
-
-  Cat() : super.empty() {
+class Cat extends SpriteAnimationComponent {
+  Cat() : super() {
     _catSpriteSheet = SpriteSheet(
-      imageName: GameAsset.catImage,
-      textureWidth: 32,
-      textureHeight: 32,
-      columns: 8,
-      rows: 10,
+      image: Flame.images.fromCache(GameAsset.catImage),
+      srcSize: Vector2(32, 32),
     );
 
     _runAnimation =
-        _catSpriteSheet.createAnimation(4, from: 0, to: 7, stepTime: 0.1);
+        _catSpriteSheet.createAnimation(row: 4, to: 7, stepTime: 0.1);
     _hitAnimation =
-        _catSpriteSheet.createAnimation(9, from: 0, to: 7, stepTime: 0.1);
+        _catSpriteSheet.createAnimation(row: 9, to: 7, stepTime: 0.1);
 
     run();
   }
 
-  bool _isCatOnGround() {
-    return y >= _maxY;
-  }
+  late SpriteSheet _catSpriteSheet;
+  late SpriteAnimation _runAnimation;
+  late SpriteAnimation _hitAnimation;
+  double _speedY = 0;
+  double _maxY = 0;
 
-  /// This method is called periodically by the game engine
-  /// to request that your component updates itself.
+  bool _isCatOnGround() => y >= _maxY;
+
+  // This method is called periodically by the game engine
+  // to request that your component updates itself.
   @override
-  void update(double t) {
-    _speedY = _speedY + GamePhysic.gravity * t;
+  void update(double dt) {
+    _speedY = _speedY + GamePhysic.gravity * dt;
 
-    y = y + _speedY * t;
+    y = y + _speedY * dt;
 
     if (_isCatOnGround()) {
       y = _maxY;
       _speedY = 0;
     }
 
-    super.update(t);
+    super.update(dt);
   }
 
-  /// This is a hook called by [BaseGame] to let this component
-  /// know that the screen (or flame draw area) has been update.
+  // This is a hook called by FlameGame to let this component
+  // know that the screen (or flame draw area) has been update.
   @override
-  void resize(Size size) {
-    height = width = size.width / 10;
+  void onGameResize(Vector2 size) {
+    height = width = size.x / 10;
     x = width;
-    y = size.height - 30 - height;
+    y = size.y - 30 - height;
     _maxY = y;
-    super.resize(size);
+    super.onGameResize(size);
   }
 
   void run() {
